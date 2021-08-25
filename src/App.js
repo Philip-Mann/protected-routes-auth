@@ -1,23 +1,38 @@
-import logo from './logo.svg';
 import './App.css';
+import Main from './sectioning/main';
+import { useState } from 'react';
 
 function App() {
+
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  const login = () => {
+    setIsAuthenticated(true);
+    console.log("logged in user:" + isAuthenticated);
+  }
+
+  const logout = () => {
+    setIsAuthenticated(false);
+    console.log("logged out user:" + isAuthenticated);
+  }
+
+
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Main 
+        auth={isAuthenticated}
+      />
+      <div className="login">
+        <button
+          onClick={login}
+        >Log In</button>
+      </div>
+      <div className="logout">
+        <button
+          onClick={logout}
+        >Log Out</button>
+      </div>
     </div>
   );
 }
